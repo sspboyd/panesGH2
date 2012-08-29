@@ -10,12 +10,13 @@ void setup() {
   background(255);
   size(800, 400);
   smooth();
-  int rSn = 47;
+  rSn = 47;
   randomSeed(rSn);
 
   p = new Pane();
-  p.x = 10; 
-  p.y = height/2;
+  p.pLoc = new PVector(0,0);
+  p.pLoc.x = 10; 
+  p.pLoc.y = height/2;
   p.w = 150; 
   p.h = 50;
 
@@ -26,9 +27,9 @@ void draw() {
   background(255);
   stroke(0);
   line(width/2, 0, width/2, height);
-  p.x = mouseX/2-60;
+  p.pLoc.x = mouseX/2-60;
   p.h = mouseY/4+50;
-  p.y = mouseY;
+  p.pLoc.y = mouseY;
   p.render();
   // if (mouseX != 0 && mouseY != 0)  line(mouseX, mouseY, width/2, height/2);
 
@@ -46,8 +47,9 @@ void mousePressed() {
 
   Pane newPane;
   newPane = new Pane();
-  newPane.x = p.x;
-  newPane.y = p.y;
+  newPane.pLoc = new PVector(0,0);
+  newPane.pLoc.x = p.pLoc.x;
+  newPane.pLoc.y = p.pLoc.y;
   newPane.w = p.w;
   newPane.h = p.h;
   newPane.col = p.col;
@@ -65,7 +67,7 @@ void mousePressed() {
 void screenCap() {
   // save functionality in here
   String outputDir = "out/";
-  String sketchName = "template-";
+  String sketchName = "panes-";
   String randomSeedNum = "rS" + rSn + "-";
   String dateTime = "" + year() + month() + day() + hour() + second();
   String fileType = ".tif";
